@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Deck.gl Playground</title>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css'>
+
+      <link rel="stylesheet" href="{% static 'map/css/style.css' %}">
+
+  
+</head>
+
+<body>
+
+  <div id="container"></div>
+
+<script src='https://cdn.rawgit.com/Pessimistress/deck.gl-runkit/master/dist/deckgl-0.2.1.min.js'></script>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
+<script  src="{% static 'map/js/index.js' %}"></script>
+
+
+</body>
+
+</html>

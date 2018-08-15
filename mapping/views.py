@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.template import Context, loader
+import os.path
 
 # Create your views here.
 
@@ -6,17 +10,8 @@ from .models import User, Nests, DEM
 
 def index(request):
 
-	num_nests = Nests.objects.all().count()
+	return render(request, 'index.html')
 
-	context = {
-		'num_nests': num_nests
-	}
-
-	return render(request, 'index.html', context=context)
-def mapRender(request):
-	mapbox_access_token = 'pk.eyJ1IjoidGhhZGlzaGkiLCJhIjoiY2prdGVpZ282MDU5bDNrbGplZjdkajcwMyJ9.6j75DNDrM9M_76hSPBZryQ'
-
-	
-	return render(request, 'mapRender.html', {
-		'mapbox_access_token': mapbox_access_token
-	})
+def map(request):
+	template = loader.get_template("map.html")
+	return HttpResponse(template.render())
