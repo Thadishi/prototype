@@ -32,5 +32,19 @@ new DeckGL({
   latitude: -33.5,
   zoom: 7,
   pitch: 10,
-  layers: []
+  layers: [new DeckGL({
+    mapboxApiAccessToken: '<your_token_here>',
+    mapStyle: 'mapbox://styles/mapbox/light-v9',
+    longitude: 20,
+    latitude: -33.5,
+    zoom: 7,
+    layers: [
+      new DeckGL.ScatterplotLayer({
+
+        
+      })
+    ]
+  })
+
+  ]
 })
