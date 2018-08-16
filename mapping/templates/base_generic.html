@@ -4,56 +4,78 @@
 <html lang="en">
 
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Black Eagle project</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <!-- <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"> -->
 
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/landing-page.css' %}" rel="stylesheet">
-
+    <!-- <link href="{% static 'css/landing-page.css' %}" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
   </head>
 
   <body>
-
     <!-- Navigation -->
-    <nav class="navbar navbar-light bg-light static-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">Black Eagle project</a>
-        <a class="btn btn-primary" href="#">Sign In</a>
+    <nav class="navbar navbar-light bg-primary static-top">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-2">
+            <img src="{% static 'images/uct-logo.jpg' %}" alt="FitzPatrick Logo" style="height:60px; width:60px; border-radius: 100px;">
+          </div>
+          <div class="col-2">
+            <img src="{% static 'images/cslogo.png' %}" alt="FitzPatrick Logo" style="height:60px; width:60px; border-radius: 100px;">
+          </div>
+          <div class="col-2">
+            <img src="{% static 'images/fitzpatrick-logo.png' %}" alt="FitzPatrick Logo" style="height:60px; width:60px; border-radius: 100px;">
+          </div>
+          <div class="col-2">
+            <h1 class="navbar-brand" style="color:white;">Black Eagle Project - Map View</h1>
+          </div>
+        </div>
+
       </div>
     </nav>
 
 
-    <div class="container-fluid">
+    <div class="container-fluid"> <!-- Data and Map container -->
 
-<div class="embed-responsive embed-responsive-21by9">
-  <iframe class="embed-responsive-item" src="map" ></iframe>
-</div>
-    
+      <div class="row" style="height:100vh;">
+        <div class="col-4 border border-primary rounded"> <!-- Data column -->
+          <div class="text-center">
+            <h2>Input Data:</h2>
+          </div>
+          <form class="row m-1">
+            <div class="form-row">
+              <div class="col-12 col-md-5 mb-2 mb-md-0">
+                <input type="text" class="form-control form-control-lg" placeholder="Longitude">
+              </div>
+              <div class="col-12 col-md-5 mb-2 mb-md-0">
+                <input type="text" class="form-control form-control-lg" placeholder="Latitude">
+              </div>
+              <div class="col-12 col-md-2">
+                <button type="submit" class="btn btn-block btn-lg btn-primary">Submit!</button>
+              </div>
+            </div>
+          </form>
+        </div> <!-- Data column -->
 
-     <form class="row m-1">
-      <div class="form-row">
-        <div class="col-12 col-md-5 mb-2 mb-md-0">
-          <input type="text" class="form-control form-control-lg" placeholder="logitude">
-        </div>
-        <div class="col-12 col-md-5 mb-2 mb-md-0">
-          <input type="text" class="form-control form-control-lg" placeholder="latitude">
-        </div>
-        <div class="col-12 col-md-2">
-          <button type="submit" class="btn btn-block btn-lg btn-primary">Sumbit!</button>
-        </div>
+        <div class="col-8 border border-primary rounded"> <!-- Map column -->
+          <div class="text-center">
+            <h2>Map:</h2>
+          </div>
+          <div class="embed-responsive embed-responsive-21by9">
+            <iframe class="embed-responsive-item" src="map" ></iframe>
+          </div>
+        </div> <!-- Map column -->
       </div>
-    </form>
-  </div>
+  </div> <!-- Data and Map container -->
+</body>
