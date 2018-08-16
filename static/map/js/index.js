@@ -13,9 +13,9 @@ new deck.DeckGL({
       id: 'scatter-plot',
       data: 'https://raw.githubusercontent.com/ThaboKopane/prototype/master/static/data/data.json',
       radiusScale: 10,
-      radiusMinPixels: 0.5,
+      radiusMinPixels: 2,
       getPosition: d => [d[0], d[1], 0],
-      //getColor: d => (d[2] === 1 ? MALE_COLOR : FEMALE_COLOR)
+      getColor: d => ([255*d[2],253*d[2],51*d[2]])
     })
   ]
 });
