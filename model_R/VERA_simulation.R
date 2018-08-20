@@ -3,9 +3,11 @@
 # Megan Murgatroyd
 
 
+
 library(methods)
 require(effects)
 riskmod <- readRDS("riskmod.rds")
+
 #this allows you to see the effects of each vairable, it's not important at the stage as this is not the final model 
 #but it does include all of the relevant variables that I expect will feature in the final model.
 #plot(allEffects(riskmod), type="response")
@@ -13,6 +15,7 @@ riskmod <- readRDS("riskmod.rds")
 ##### WEBSITE SIMULATION: CAPE POINT#####
 require(rgdal)
 require(raster)
+
 
 #Scenario: A developer is interested in putting a wind farm on the Cape Penninsula, there is one Verreaux's eagle nest on site:
 #This is the development area as a shapefile:
@@ -22,9 +25,9 @@ arguments = commandArgs(trailingOnly = TRUE)
 args1 <- strsplit(arguments,",")
 print(args1)
 
-shapefile <- "penninsula"
-srtm30a<-raster("s34_e018_1arc_v3.tif")
-srtm30b<-raster("s35_e018_1arc_v3.tif")
+#shapefile <- "penninsula"
+#srtm30a<-raster("s34_e018_1arc_v3.tif")
+#srtm30b<-raster("s35_e018_1arc_v3.tif")
 shapefile <- as.character(args1[1])
 srtm30a <- raster(as.character(args1[2]))
 srtm30b <- raster(as.character(args1[3]))
@@ -99,13 +102,12 @@ pred=as.data.frame(pred)
 #summary(pred$pred)
 
 #RISK PLOT:
-toplot=cbind(long= dev.terrain$longitude, lat=dev.terrain$latitude, pred=pred$pred)
-write.csv(toplot, "output.csv", row.names = F)
-potplot <- subset.data.frame(toplot, toplot["pred"] >0.2)
-potlist <- write.csv(potplot, "potlist.csv", row.names = F)
-cat(potlist)
+toplot=cbind.data.frame(long= dev.terrain$longitude, lat=dev.terrain$latitude, pred=pred$pred)
+
+potplot <- subset.data.frame(toplot, toplot$pred >0.2)
+potlist <- write.csv(potplot, "output.csv", row.names = F, col.names = F)
 risk_plot=rasterFromXYZ(toplot)
-require(jsonlite)
+
 
 
 colours=c("darkseagreen1","darkorange","red")
