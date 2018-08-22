@@ -25,12 +25,12 @@ arguments = commandArgs(trailingOnly = TRUE)
 args1 <- strsplit(arguments,",")
 print(args1)
 
-#shapefile <- "penninsula"
-#srtm30a<-raster("s34_e018_1arc_v3.tif")
-#srtm30b<-raster("s35_e018_1arc_v3.tif")
-shapefile <- as.character(args1[1])
-srtm30a <- raster(as.character(args1[2]))
-srtm30b <- raster(as.character(args1[3]))
+shapefile <- "penninsula"
+srtm30a<-raster("s34_e018_1arc_v3.tif")
+srtm30b<-raster("s35_e018_1arc_v3.tif")
+#shapefile <- as.character(args1[1])
+#srtm30a <- raster(as.character(args1[2]))
+#srtm30b <- raster(as.character(args1[3]))
 
 
 #merge the two together:
@@ -39,6 +39,9 @@ rm(srtm30a, srtm30b)
 
 
 dev=readOGR(".",shapefile)
+lin <- as(dev, "SpatialLinesDataFrame")
+allcoordinates <- spbabel::sptable(dev)
+
 #plot(dem)
 #plot(dev, add=T)
 #Extract the info needed for the model:
