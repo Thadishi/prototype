@@ -8,7 +8,7 @@ library(methods)
 require(effects)
 riskmod <- readRDS("riskmod.rds")
 
-#this allows you to see the effects of each vairable, it's not important at the stage as this is not the final model 
+#this allows you to see the effects of each vairable, it's not important at the stage as this is not the final model??
 #but it does include all of the relevant variables that I expect will feature in the final model.
 #plot(allEffects(riskmod), type="response")
 
@@ -32,15 +32,21 @@ srtm30b<-raster("s35_e018_1arc_v3.tif")
 #srtm30a <- raster(as.character(args1[2]))
 #srtm30b <- raster(as.character(args1[3]))
 
+dev=readOGR(".",shapefile)
+allcoordinates <- spbabel::sptable(dev)
+#got the cordinates for shaefile
+shapeframe <- data.frame("xmin"=min(allcoordinates$x_), "xmax"=max(allcoordinates$x_),
+                         "ymin"=min(allcoordinates$y_), "ymax"=max(allcoordinates$y_))
 
 #merge the two together:
 dem=merge(srtm30a, srtm30b)
 rm(srtm30a, srtm30b)
 
+demCoor1 = xyFromCell(srtm30a, cell=1)
+demCoorlast = xyFromCell(srtm30a, cell = length(srtm30a))
 
-dev=readOGR(".",shapefile)
-lin <- as(dev, "SpatialLinesDataFrame")
-allcoordinates <- spbabel::sptable(dev)
+
+
 
 #plot(dem)
 #plot(dev, add=T)
@@ -50,7 +56,7 @@ aspect<-terrain(dem, opt=c('aspect'), unit='degrees')
 slope_sd3=focal(slope, w=matrix(1,3,3), fun=sd) ##NB this layer take 5min+ to make. It is taking each grid cell and finding the standard deviation of the altitude of it and the cells around it on a 3x3 grid (i.e. SD of 9 cells)
 #make a terrain.stack of these layers:
 
-terrain.stack_pen<-stack(list(slope=slope,  aspect=aspect, slope_sd3=slope_sd3, alt=dem)) 
+terrain.stack_pen<-stack(list(slope=slope,?? aspect=aspect, slope_sd3=slope_sd3, alt=dem))??
 
 #Crop the terrain.stack by the development boundaries:
 crs(dev)=crs(dem)
@@ -117,4 +123,5 @@ colours=c("darkseagreen1","darkorange","red")
 #plot(risk_plot, col=colours)
 #plot(dev, add=T)
 #writeRaster(risk_plot, "capepoint_risk", format = "GTiff")
+
 
